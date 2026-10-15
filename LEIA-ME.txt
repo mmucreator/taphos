@@ -1,0 +1,13 @@
+Pastas de imagens (os nomes estão em config.js, pode mudar os dois):
+
+  assets/fundo.jpg           fundo do Canva, 1920x1080
+  assets/organismos/         fotos de fósseis reais (peixe, anfibio, reptil, inseto, folha, molusco), 4:3
+  assets/ambientes/          lago, rio, mar, planicie, 4:3
+  assets/partes/             ícones dos elementos: cranio, vertebras, dentes... (PNG quadrado)
+  assets/eventos/            ícones dos eventos: enchente, necrofagos... (PNG quadrado)
+
+Maiúsculas e minúsculas importam no Vercel: use sempre minúsculas.
+
+  assets/casos/              fotos dos casos: caso1.jpg ... caso8.jpg, caso5a/5b, caso6a/6b (nomes em casos.js)
+  assets/ambientes/          também deserto.jpg e floresta.jpg
+  assets/partes e eventos    ícones usados pelo jogo antigo (simulador.html); o novo usa só os de eventos

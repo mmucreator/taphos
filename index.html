@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taphos: detetive de fósseis</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦴</text></svg>">
+<meta name="color-scheme" content="light">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ft:"Rubik Dirt",Fredoka,Georgia,serif;--ink:#3a2a20;--mut:#7a6552;--card:#fff8ea;--line:#e6cfa8;--terra:#c8603a;--terra2:#9c4528;--ocre:#e3a233;--verde:#4f9d73;--vermelho:#d4553f;--azul:#3b84c4}
+*{box-sizing:border-box}
+html{height:100%}
+body{margin:0;min-height:100%;background:#e9c99a;color:var(--ink);font:17px/1.6 Nunito,system-ui,sans-serif;padding:max(1rem,env(safe-area-inset-top)) 1rem max(1rem,env(safe-area-inset-bottom))}
+#bg{position:fixed;inset:0;z-index:-2;background:center/cover no-repeat}
+body::before{content:"";position:fixed;inset:0;background:#f6e6c8;opacity:var(--veu,.4);z-index:-1}
+.wrap{max-width:720px;margin:0 auto}
+main{background:rgba(255,248,234,.94);border:3px solid rgba(200,96,58,.35);border-radius:34px 42px 36px 44px/42px 34px 44px 36px;padding:1.6rem;box-shadow:0 14px 40px rgba(80,40,15,.3)}
+@media(max-width:520px){main{padding:1.1rem;border-radius:26px}}
+h1,h2,h3{margin:0 0 .5rem;line-height:1.15}
+h1{font-family:var(--ft);font-weight:400;font-size:clamp(3.4rem,15vw,6rem);color:var(--terra);letter-spacing:.02em;margin-bottom:.2rem}
+h2,h3{font-family:Fredoka,Nunito,sans-serif;font-weight:600;color:var(--terra2)}
+h2{font-size:1.7rem}h3{font-size:1.25rem;margin-top:1.2rem}
+.wave{display:block;width:100%;height:34px;margin:.2rem 0 1.2rem}
+.prog{display:flex;gap:4px;margin-bottom:1.2rem}.prog i{flex:1;height:10px;border-radius:99px;background:rgba(150,100,60,.2)}
+.prog i.d:nth-child(6n+1){background:#e3a233}.prog i.d:nth-child(6n+2){background:#d4905a}.prog i.d:nth-child(6n+3){background:#c8603a}
+.prog i.d:nth-child(6n+4){background:#4f9d73}.prog i.d:nth-child(6n+5){background:#3b84c4}.prog i.d:nth-child(6n){background:#a8668f}
+.prog i.on{background:var(--ocre);box-shadow:0 0 0 3px rgba(227,162,51,.35)}
+.fase{display:inline-block;background:#fbe1a4;color:#6b3d17;border-radius:99px;padding:.3rem 1rem;font-weight:600;margin-bottom:.8rem}
+.mis{background:#e5f0d6;border:2px solid #b9d49a;border-radius:20px 26px 22px 28px;padding:.7rem 1rem;margin:.2rem 0 1rem;color:#35502a}
+figure{margin:0;border:2px solid var(--line);border-radius:22px 28px 20px 26px;overflow:hidden;background:var(--card)}
+figcaption{padding:.6rem .9rem;font-size:.95rem}
+.big{margin:0 0 .9rem}
+.ph{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.card .ph{aspect-ratio:4/3}
+.ph.em{display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;min-height:150px;font:600 1.35rem Fredoka,sans-serif;color:#8a5a2b;background:linear-gradient(135deg,#f5e0b2,#e8b97a)}
+.ic{width:48px;height:48px;object-fit:contain;display:block;margin-bottom:.3rem}.ic.em{width:auto;height:auto;font-size:1.8rem}.ic.em:empty{display:none}
+.pistas{padding-left:1.3rem;margin:.6rem 0 1rem}.pistas li::marker{color:var(--terra)}li{margin:.3rem 0}
+.mut{color:var(--mut)}
+.opts{display:grid;gap:.8rem;margin:1rem 0}.opts.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+button{font:inherit;color:var(--ink);cursor:pointer;text-align:left}
+#in button:not(.pri){background:#dcecf9;border:2px solid var(--azul);color:#17395a;border-radius:20px 24px 18px 26px;padding:.85rem 1.1rem;transition:transform .15s,background .15s}
+#in button:not(.pri):hover:not(:disabled){background:#c8e0f5;transform:translateY(-2px)}
+#in button b{display:block}#in button small{display:block;opacity:.8}
+#in button.card{padding:0;overflow:hidden}.bd{padding:.7rem .9rem}
+#in button:disabled{opacity:.55;cursor:default}
+#in button.ok,#in button.ok:disabled{background:#cdeccf;border:3px solid var(--verde);color:#1d4a2c;opacity:1}
+#in button.no,#in button.no:disabled{background:#fbd3cc;border:3px solid var(--vermelho);color:#6b2218;opacity:1}
+.slots{display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0}#in .slot{flex:1;min-width:140px;min-height:3.6rem;border-style:dashed;text-align:center}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}@media(max-width:520px){.cmp{grid-template-columns:1fr}}
+.pri{background:var(--terra);color:#fff;border:0;border-radius:99px;padding:.8rem 1.6rem;font-weight:800;box-shadow:0 5px 0 var(--terra2);text-align:center;transition:transform .1s,box-shadow .1s;margin-top:.6rem}
+.pri:hover:not(:disabled){transform:translateY(-1px)}.pri:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 var(--terra2)}
+.pri:disabled{background:#d6b9a4;box-shadow:0 5px 0 #b99a82;cursor:default}
+button:focus-visible{outline:3px solid var(--ocre);outline-offset:3px}
+.res{padding:.6rem 1.1rem;border-radius:18px;margin:1rem 0;color:#fff;font-weight:800;display:inline-block}.res.ok{background:var(--verde)}.res.bad{background:var(--vermelho)}
+.tag{display:inline-block;background:#fbe1a4;border-radius:99px;padding:.15rem .9rem;margin:.2rem;font-size:.9rem;font-weight:600;color:#6b3d17}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div class="wrap"><main id="app"></main></div>
+<script src="config.js"></script>
+<script src="casos.js"></script>
+<script>
+const A=window.ASSETS||{},ALL=window.CASOS||[],$=s=>document.querySelector(s);
+let C=ALL;const MIS={};
+const EVN={flood:['Enchente','🌧️','A água transborda e arrasta a carcaça.'],scav:['Necrófagos','🦀','Animais comem e mordem a carcaça.'],sun:['Sol e ressecamento','☀️','O corpo fica exposto na superfície.'],
+ fast:['Soterramento rápido','🪨','Uma camada de sedimento cobre tudo depressa.'],slow:['Soterramento lento','⏳','O sedimento chega aos poucos.'],bact:['Decomposição','🦠','Bactérias destroem as partes moles.'],
+ anox:['Água sem oxigênio','🫧','Quase não há bactérias nem necrófagos.'],perm:['Permineralização','💎','Minerais preenchem os poros do osso.'],
+ comp:['Compactação','🧱','O peso das camadas achata o fóssil.'],diss:['Dissolução','🧪','Água ácida dissolve partes do fóssil.']};
+const sh=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+const AMB={lago:['Lago','🏞️'],rio:['Rio','🌊'],mar:['Mar','🌐'],deserto:['Deserto','🏜️'],floresta:['Floresta seca','🌳'],planicie:['Planície de inundação','🌾']};
+const em=(e,c)=>A.emojiReserva?`<span class="${c} em">${e}</span>`:'';
+const img=(src,nm,e)=>{const fb=`<span class="ph em">${A.emojiReserva?e||nm:nm}</span>`;
+ return src?`<img class="ph" src="${src}" alt="${nm}" data-f='${fb}' onerror="this.outerHTML=this.dataset.f">`:fb};
+const ico=(kind,k,e)=>{const u=(A[kind]||{})[k],fb=em(e,'ic');return u?`<img class="ic" src="${u}" alt="" data-f='${fb}' onerror="this.outerHTML=this.dataset.f">`:fb};
+function setBg(){const u=A.fundo;$('#bg').style.backgroundImage=u?`url("${u}")`:'none';document.documentElement.style.setProperty('--veu',A.veu??.5);
+ if(u&&!setBg.t){setBg.t=new Image();setBg.t.onerror=()=>console.warn('Fundo não encontrado: '+u);setBg.t.src=u}}
+let i=0,score=0,sel=[];
+const prog=()=>`<div class="prog">${C.map((c,k)=>`<i class="${k<i?'d':k===i?'on':''}"></i>`).join('')}</div>`;
+const pistas=p=>`<ul class="pistas">${(p||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+const evH=o=>`${ico('eventos',o,EVN[o][1])}<b>${EVN[o][0]}</b><small>${EVN[o][2]}</small>`;
+function titleFont(){const n=A.fonteTitulo||'Rubik Dirt',l=document.createElement('link');l.rel='stylesheet';
+ l.href='https://fonts.googleapis.com/css2?family='+n.trim().replace(/ +/g,'+')+'&display=swap';document.head.appendChild(l);
+ document.documentElement.style.setProperty('--ft','"'+n+'",Fredoka,Georgia,serif')}
+function ordena(){ALL.forEach(c=>{if(c.missao)MIS[c.fase]=c.missao});
+ if(A.embaralharCasos===false){C=ALL;return}
+ const g={};ALL.forEach(c=>(g[c.fase]=g[c.fase]||[]).push(c));C=Object.values(g).flatMap(sh)}
+function intro(){setBg();titleFont();$('#app').innerHTML=`<h1>Taphos</h1><svg class="wave" viewBox="0 0 400 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0 6Q50-2 100 6T200 6T300 6T400 6V34H0Z" fill="#f0d9a8"/><path d="M0 12Q50 4 100 12T200 12T300 12T400 12V34H0Z" fill="#e8b97a"/><path d="M0 18Q50 10 100 18T200 18T300 18T400 18V34H0Z" fill="#d4905a"/><path d="M0 24Q50 16 100 24T200 24T300 24T400 24V34H0Z" fill="#c8603a"/><path d="M0 30Q50 22 100 30T200 30T300 30T400 30V34H0Z" fill="#8f4f3a"/></svg>
+ <p>Você é um paleontólogo recém-chegado à expedição. Em cada caso, um fóssil misterioso espera por você. Use as pistas para descobrir o que aconteceu com ele e onde ele vivia.</p>
+ <button class="pri" id="go">Começar expedição</button>`;$('#go').onclick=()=>{ordena();i=0;score=0;caso()}}
+function caso(){setBg();const c=C[i];sel=[];const first=i===0||C[i-1].fase!==c.fase;
+ const body=c.tipo==='comparar'?`<div class="cmp">${c.itens.map(t=>`<figure>${img(t.img,t.rotulo)}<figcaption><b>${t.rotulo}</b>${pistas(t.pistas)}</figcaption></figure>`).join('')}</div>`
+  :`<figure class="big">${img(c.img,c.titulo)}</figure>${pistas(c.pistas)}`;
+ $('#app').innerHTML=`${prog()}<div class="fase"><b>${c.fase}.</b> Caso ${i+1} de ${C.length}</div>${first&&MIS[c.fase]?`<div class="mis">${MIS[c.fase]}</div>`:''}
+  <h2>${c.titulo}</h2>${body}<h3>${c.pergunta}</h3><div id="in"></div><div id="fb"></div>`;
+ T[c.tipo](c)}
+function fim(ok,certo){const c=C[i];document.querySelectorAll('#in button').forEach(b=>{b.disabled=true;if(b.dataset.ok)b.classList.add(b.dataset.ok==='1'?'ok':'no')});if(ok)score++;
+ $('#fb').innerHTML=`<div class="res ${ok?'ok':'bad'}">${ok?'Acertou!':'Quase!'}</div>${ok?'':`<p><b>Resposta certa:</b> ${certo}</p>`}
+  <p><b>Por quê:</b> ${c.exp}</p>${c.termo?`<p class="mut">Os cientistas chamam isso de <b>${c.termo}</b>.</p>`:''}
+  <button class="pri" id="nx">${i<C.length-1?'Próximo caso':'Ver resultado'}</button>`;
+ $('#nx').onclick=()=>{i++;i<C.length?caso():fimJogo()};$('#nx').scrollIntoView({block:'nearest'})}
+function fimJogo(){const t=C.map(c=>c.termo).filter(Boolean);
+ $('#app').innerHTML=`${prog()}<h2>Expedição concluída</h2><p>Você resolveu <b>${score} de ${C.length}</b> casos.</p>
+  <p>${score>=C.length*.75?'Ótimo trabalho, paleontólogo(a)!':score>=C.length/2?'Bom começo! Tente de novo para melhorar.':'Fósseis são difíceis de ler. Tente de novo!'}</p>
+  <p>Conceitos que você encontrou:</p><p>${t.map(x=>`<span class="tag">${x}</span>`).join('')}</p><button class="pri" id="again">Jogar de novo</button>`;$('#again').onclick=intro}
+const T={
+ historia(c){const n=c.resposta.length,pool=sh(c.opcoes),nm=a=>a.map(x=>EVN[x][0]).join(' → ');
+  const draw=()=>{$('#in').innerHTML=`<p class="mut">Toque nos eventos para montar a história, na ordem em que aconteceram.</p>
+   <div class="slots">${Array.from({length:n},(_,k)=>`<button class="slot" data-s="${k}">${sel[k]?evH(sel[k]):(k+1)+'º evento'}</button>`).join('')}</div>
+   <div class="opts g3">${pool.map(o=>`<button data-o="${o}" data-ok="${c.resposta.includes(o)?1:0}" ${sel.includes(o)?'disabled':''}>${evH(o)}</button>`).join('')}</div>
+   <button class="pri" id="ok" ${sel.length<n?'disabled':''}>Confirmar história</button>`;
+   document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(sel.length<n){sel.push(b.dataset.o);draw()}});
+   document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{sel.splice(+b.dataset.s,1);draw()});
+   $('#ok').onclick=()=>{document.querySelectorAll('[data-s]').forEach(b=>b.dataset.ok=sel[+b.dataset.s]===c.resposta[+b.dataset.s]?1:0);fim(sel.join()===c.resposta.join(),'Morte → '+nm(c.resposta)+' → fóssil')}};draw()},
+ ambiente(c){$('#in').innerHTML=`<div class="opts g3">${sh(c.opcoes).map(k=>`<button class="card" data-k="${k}" data-ok="${k===c.resposta?1:0}">${img((A.ambientes||{})[k],AMB[k][0],AMB[k][1])}<div class="bd"><b>${AMB[k][0]}</b></div></button>`).join('')}</div>`;
+  document.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>fim(b.dataset.k===c.resposta,AMB[c.resposta][0]))},
+ comparar(c){$('#in').innerHTML=`<div class="opts g3">${c.itens.map((t,k)=>`<button data-k="${k}" data-ok="${k===c.resposta?1:0}"><b>${t.rotulo}</b></button>`).join('')}</div>`;
+  document.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>fim(+b.dataset.k===c.resposta,c.itens[c.resposta].rotulo))},
+ misterio(c){$('#in').innerHTML=`<div class="opts">${sh(c.opcoes.map((o,k)=>[o,k])).map(([o,k])=>`<button data-k="${k}" data-ok="${k===c.resposta?1:0}">${o}</button>`).join('')}</div>`;
+  document.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>fim(+b.dataset.k===c.resposta,c.opcoes[c.resposta]))}};
+intro();
+</script>
+</body>
+</html>

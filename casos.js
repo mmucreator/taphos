@@ -1,0 +1,95 @@
+// ============================================================
+//  CASOS DO JOGO. Para criar um caso novo, copie um bloco e edite.
+//  tipo: 'historia' | 'ambiente' | 'comparar' | 'misterio'
+//  img: foto do fóssil (pasta assets/casos/)
+//  historia: opcoes = eventos (flood, scav, sun, fast, slow, bact, anox, perm, comp, diss);
+//            resposta = lista NA ORDEM certa (o tamanho da lista define quantos espaços aparecem)
+//  ambiente: opcoes = lago, rio, mar, deserto, floresta, planicie; resposta = um deles
+//  comparar: itens = dois fósseis; resposta = 0 (primeiro) ou 1 (segundo)
+//  misterio: opcoes = frases; resposta = posição da certa (0, 1 ou 2). A ordem é embaralhada no jogo.
+// ============================================================
+window.CASOS = [
+ // ---------- Fase 1 ----------
+ {fase:'Fase 1: A descoberta',missao:'Encontramos fósseis com histórias complicadas. Descubra quais eventos aconteceram, e em que ordem.',
+  tipo:'historia',titulo:'O peixe e a sombra do corpo',img:'assets/casos/caso1.jpg',
+  pistas:['Esqueleto completo','Contorno do corpo marcado na rocha (partes moles)','Rocha escura, rica em matéria orgânica'],
+  pergunta:'Que dois eventos explicam esse fóssil?',opcoes:['anox','fast','sun','flood','scav','slow'],resposta:['anox','fast'],
+  exp:'Sem oxigênio quase não há bactérias nem necrófagos, e o soterramento rápido protege o corpo. Assim até partes moles podem deixar marcas.',termo:'anoxia'},
+ {fase:'Fase 1: A descoberta',tipo:'historia',titulo:'Os ossos esbranquiçados',img:'assets/casos/caso2.jpg',
+  pistas:['Ossos rachados e esbranquiçados','Pontas arredondadas','Todos juntos numa camada de areia'],
+  pergunta:'Que três eventos aconteceram, nesta ordem?',opcoes:['sun','flood','fast','scav','bact','slow'],resposta:['sun','flood','fast'],
+  exp:'Ossos esbranquiçados e rachados ficaram ao sol. Depois uma enchente os arrastou e arredondou, e por fim a areia os cobriu.',termo:'intemperismo'},
+ {fase:'Fase 1: A descoberta',tipo:'historia',titulo:'A concha que sumiu',img:'assets/casos/caso3.jpg',
+  pistas:['Só o molde da concha, sem a concha original','Marca perfeita do lado de fora','Rocha porosa'],
+  pergunta:'Que dois eventos explicam esse fóssil?',opcoes:['bact','fast','diss','scav','sun','flood'],resposta:['fast','diss'],
+  exp:'O sedimento cobriu a concha e deixou a forma marcada. Depois, água ácida dissolveu a concha e sobrou o molde.',termo:'molde'},
+ {fase:'Fase 1: A descoberta',tipo:'historia',titulo:'O tronco de pedra',img:'assets/casos/caso4.jpg',
+  pistas:['Anéis de crescimento ainda visíveis','Pesado como pedra','Poros cheios de sílica'],
+  pergunta:'Que dois eventos explicam esse fóssil?',opcoes:['fast','perm','sun','flood','comp','scav'],resposta:['fast','perm'],
+  exp:'Soterrado, o tronco foi infiltrado por água cheia de minerais, que preencheram os poros e preservaram os detalhes da madeira.',termo:'permineralização'},
+ // ---------- Fase 2 ----------
+ {fase:'Fase 2: O ambiente',missao:'Agora vamos descobrir onde esses organismos viviam. Preste atenção na rocha, não só nos fósseis.',
+  tipo:'ambiente',titulo:'Peixes e camadas finíssimas',img:'assets/casos/caso5.jpg',
+  pistas:['Peixes inteiros','Rocha de lama fina em lâminas','Nada de areia nem de cascalho'],
+  pergunta:'Onde esses animais provavelmente viviam?',opcoes:['lago','rio','planicie','mar'],resposta:'lago',
+  exp:'Lâminas finíssimas sem areia indicam água parada e calma, onde só as partículas mais finas chegam e se depositam.',termo:'laminação'},
+ {fase:'Fase 2: O ambiente',tipo:'ambiente',titulo:'Ossos misturados na areia',img:'assets/casos/caso6.jpg',
+  pistas:['Ossos arredondados de vários animais misturados','Areia grossa e cascalho','Camadas inclinadas cruzadas'],
+  pergunta:'Que ambiente produziu essa camada?',opcoes:['lago','rio','mar','deserto'],resposta:'rio',
+  exp:'Areia grossa e camadas inclinadas se formam com correnteza forte. A mistura de ossos também mostra transporte.',termo:'estratificação cruzada'},
+ {fase:'Fase 2: O ambiente',tipo:'ambiente',titulo:'Lama que secava',img:'assets/casos/caso7.jpg',
+  pistas:['Lama avermelhada','Rachaduras de ressecamento','Marcas de raízes','Ossos de anfíbio e de réptil'],
+  pergunta:'Que ambiente produziu essa camada?',opcoes:['lago','mar','planicie','deserto'],resposta:'planicie',
+  exp:'A lama fina vem de cheias, e as rachaduras e raízes mostram que o terreno secava e recebia plantas entre uma cheia e outra.',termo:'planície de inundação'},
+ {fase:'Fase 2: O ambiente',tipo:'misterio',titulo:'As folhas gigantes',img:'assets/casos/caso8.jpg',
+  pistas:['Folhas grandes de margem lisa','Troncos grossos','Fósseis de anfíbios'],
+  pergunta:'Que clima essas pistas sugerem?',opcoes:['Quente e úmido','Frio e seco','Quente e muito seco'],resposta:0,
+  exp:'Folhas grandes de margem lisa são comuns em florestas quentes e úmidas, e os anfíbios dependem de umidade.',termo:'paleoclima'},
+ // ---------- Fase 3 ----------
+ {fase:'Fase 3: Compare',missao:'Dois fósseis parecidos, mas com histórias diferentes. Os detalhes decidem.',
+  tipo:'comparar',titulo:'Os dois montes de ossos',pergunta:'Qual sofreu mais transporte?',resposta:1,
+  itens:[{rotulo:'Fóssil A',img:'assets/casos/caso9a.jpg',pistas:['Ossos soltos','Pontas afiadas','Todos concentrados num ponto']},
+         {rotulo:'Fóssil B',img:'assets/casos/caso9b.jpg',pistas:['Ossos soltos','Pontas arredondadas','Espalhados pela camada']}],
+  exp:'Nos dois, os ossos estão soltos. A diferença está no arredondamento: ossos que viajaram na água batem e se desgastam.',termo:'abrasão'},
+ {fase:'Fase 3: Compare',tipo:'comparar',titulo:'Rachado ou preservado?',pergunta:'Qual foi soterrado mais depressa?',resposta:0,
+  itens:[{rotulo:'Fóssil A',img:'assets/casos/caso10a.jpg',pistas:['Esqueleto completo','Marca da pele ainda visível']},
+         {rotulo:'Fóssil B',img:'assets/casos/caso10b.jpg',pistas:['Ossos rachados','Ossos esbranquiçados']}],
+  exp:'Rachaduras e ossos esbranquiçados mostram muito tempo ao sol. O soterramento rápido preserva até marcas de partes moles.',termo:'intemperismo'},
+ {fase:'Fase 3: Compare',tipo:'comparar',titulo:'O fundo tinha oxigênio?',pergunta:'Em qual deles o fundo tinha mais oxigênio?',resposta:1,
+  itens:[{rotulo:'Fóssil A',img:'assets/casos/caso11a.jpg',pistas:['Lâminas finas e contínuas','Rocha escura','Nenhuma toca de vermes']},
+         {rotulo:'Fóssil B',img:'assets/casos/caso11b.jpg',pistas:['Sedimento revolvido','Tocas de vermes','Ossos quebrados']}],
+  exp:'Tocas indicam que animais viviam no fundo, e isso só é possível com oxigênio. Lâminas intactas mostram que ninguém revolveu o sedimento.',termo:'bioturbação'},
+ // ---------- Fase 4 ----------
+ {fase:'Fase 4: O mistério',missao:'Descobertas estranhas pedem raciocínio de detetive. Cuidado com as respostas que parecem lógicas.',
+  tipo:'misterio',titulo:'Tantos peixes, tão poucos bichos de terra',img:'assets/casos/caso12.jpg',
+  pistas:['40 peixes','2 ossos de animais terrestres','Rocha de lama fina'],
+  pergunta:'Por que existem tantos peixes e quase nenhum animal terrestre?',
+  opcoes:['O lugar era um lago, e a maioria dos animais vivia na água','Os animais terrestres ainda não existiam nessa época','Os peixes fossilizam mais por serem maiores'],resposta:0,
+  exp:'Em um lago quase tudo vive na água. Os poucos animais terrestres chegaram pela margem ou foram levados pela água.',termo:'viés do registro fóssil'},
+ {fase:'Fase 4: O mistério',tipo:'misterio',titulo:'A camada dos peixes',img:'assets/casos/caso13.jpg',
+  pistas:['Dezenas de peixes juntos','Esqueletos inteiros, sem abrasão','Camada fina de lama logo acima'],
+  pergunta:'Por que há tantos animais na mesma camada?',
+  opcoes:['Uma enchente trouxe todos de outro rio','Algo matou todos ao mesmo tempo, como seca ou falta de oxigênio','Um predador gigante comeu todos'],resposta:1,
+  exp:'Esqueletos inteiros e sem abrasão mostram que não houve transporte. Muitos indivíduos na mesma camada sugerem morte em massa.',termo:'mortandade em massa'},
+ {fase:'Fase 4: O mistério',tipo:'misterio',titulo:'Só dentes de tubarão',img:'assets/casos/caso14.jpg',
+  pistas:['Milhares de dentes de tubarão','Nenhuma vértebra','Nenhum esqueleto'],
+  pergunta:'Por que só aparecem dentes?',
+  opcoes:['O esqueleto é de cartilagem, que quase não fossiliza, e cada tubarão perde centenas de dentes','Os tubarões dessa época não tinham esqueleto','Os ossos foram todos dissolvidos por água ácida'],resposta:0,
+  exp:'Cartilagem se decompõe com facilidade, enquanto os dentes são duros. Além disso, um tubarão troca de dentes muitas vezes na vida, e um indivíduo deixa muitos fósseis.',termo:'fossilização diferencial'},
+ {fase:'Fase 4: O mistério',tipo:'misterio',titulo:'Contando fósseis',
+  pistas:['Um pesquisador achou 10 vezes mais fósseis de peixe do que de sapo'],
+  pergunta:'Ele pode concluir que havia 10 vezes mais peixes do que sapos vivos?',
+  opcoes:['Sim, mais fósseis significa sempre mais indivíduos vivos','Não necessariamente: peixes vivem onde o soterramento é comum e podem se preservar melhor que sapos','Não: havia mais sapos, porque eles pulam mais'],resposta:1,
+  exp:'O número de fósseis depende de quantos organismos viviam ali, mas também de como cada grupo se preserva. O registro é uma amostra filtrada.',termo:'viés tafonômico'},
+ // ---------- Fase 5 ----------
+ {fase:'Fase 5: Do corpo à rocha',missao:'O que acontece com o fóssil depois de soterrado também importa.',
+  tipo:'misterio',titulo:'Água ácida',
+  pistas:['Depois do soterramento, água ácida circulou entre as camadas'],
+  pergunta:'Qual destes fósseis teria mais chance de desaparecer?',
+  opcoes:['Uma concha de molusco (carbonato de cálcio)','Um dente de peixe (fosfato de cálcio)','Os dois, do mesmo jeito'],resposta:0,
+  exp:'O carbonato de cálcio reage com ácido e se dissolve com facilidade. O fosfato dos dentes é mais resistente.',termo:'diagênese'},
+ {fase:'Fase 5: Do corpo à rocha',tipo:'historia',titulo:'O crânio achatado',img:'assets/casos/caso16.jpg',
+  pistas:['Crânio achatado e rachado','Muitas camadas de rocha por cima','Costelas inteiras, mas deformadas'],
+  pergunta:'Que dois eventos explicam esse fóssil?',opcoes:['fast','comp','diss','sun','scav','perm'],resposta:['fast','comp'],
+  exp:'O soterramento protegeu o corpo. Com milhões de anos, o peso das camadas de cima achatou e deformou o fóssil.',termo:'compactação'}
+];
