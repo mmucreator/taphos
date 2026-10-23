@@ -82,13 +82,13 @@ window.CASOS = [
   opcoes:['Sim, mais fósseis significa sempre mais indivíduos vivos','Não necessariamente: peixes vivem onde o soterramento é comum e podem se preservar melhor que sapos','Não: havia mais sapos, porque eles pulam mais'],resposta:1,
   exp:'O número de fósseis depende de quantos organismos viviam ali, mas também de como cada grupo se preserva. O registro é uma amostra filtrada.',termo:'viés tafonômico'},
  // ---------- Fase 5 ----------
- {fase:'Fase 5: Do corpo à rocha',missao:'O que acontece com o fóssil depois de soterrado também importa.',img:'assets/casos/caso17.jpg',
+ {fase:'Fase 5: Do corpo à rocha',missao:'O que acontece com o fóssil depois de soterrado também importa.',img:'assets/casos/caso16.jpg',
   tipo:'misterio',titulo:'Água ácida',
   pistas:['Depois do soterramento, água ácida circulou entre as camadas'],
   pergunta:'Qual destes fósseis teria mais chance de desaparecer?',
   opcoes:['Uma concha de molusco (carbonato de cálcio)','Um dente de peixe (fosfato de cálcio)','Os dois, do mesmo jeito'],resposta:0,
   exp:'O carbonato de cálcio reage com ácido e se dissolve com facilidade. O fosfato dos dentes é mais resistente.',termo:'diagênese'},
- {fase:'Fase 5: Do corpo à rocha',tipo:'historia',titulo:'O crânio achatado',img:'assets/casos/caso16.jpg',
+ {fase:'Fase 5: Do corpo à rocha',tipo:'historia',titulo:'O crânio achatado',img:'assets/casos/caso17.jpg',
   pistas:['Crânio achatado e rachado','Muitas camadas de rocha por cima','Costelas inteiras, mas deformadas'],
   pergunta:'Que dois eventos explicam esse fóssil?',opcoes:['fast','comp','diss','sun','scav','perm'],resposta:['fast','comp'],
   exp:'O soterramento protegeu o corpo. Com milhões de anos, o peso das camadas de cima achatou e deformou o fóssil.',termo:'compactação'}
