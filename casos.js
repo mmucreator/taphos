@@ -78,11 +78,11 @@ window.CASOS = [
   exp:'Cartilagem se decompõe com facilidade, enquanto os dentes são duros. Além disso, um tubarão troca de dentes muitas vezes na vida, e um indivíduo deixa muitos fósseis.',termo:'fossilização diferencial'},
  {fase:'Fase 4: O mistério',tipo:'misterio',titulo:'Contando fósseis',
   pistas:['Um pesquisador achou 10 vezes mais fósseis de peixe do que de sapo'],
-  pergunta:'Ele pode concluir que havia 10 vezes mais peixes do que sapos vivos?',
+  pergunta:'Ele pode concluir que havia 10 vezes mais peixes do que sapos vivos?',img:'assets/casos/caso15.jpg',
   opcoes:['Sim, mais fósseis significa sempre mais indivíduos vivos','Não necessariamente: peixes vivem onde o soterramento é comum e podem se preservar melhor que sapos','Não: havia mais sapos, porque eles pulam mais'],resposta:1,
   exp:'O número de fósseis depende de quantos organismos viviam ali, mas também de como cada grupo se preserva. O registro é uma amostra filtrada.',termo:'viés tafonômico'},
  // ---------- Fase 5 ----------
- {fase:'Fase 5: Do corpo à rocha',missao:'O que acontece com o fóssil depois de soterrado também importa.',
+ {fase:'Fase 5: Do corpo à rocha',missao:'O que acontece com o fóssil depois de soterrado também importa.',img:'assets/casos/caso17.jpg',
   tipo:'misterio',titulo:'Água ácida',
   pistas:['Depois do soterramento, água ácida circulou entre as camadas'],
   pergunta:'Qual destes fósseis teria mais chance de desaparecer?',
